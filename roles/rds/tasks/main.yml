@@ -1,0 +1,21 @@
+---
+
+- rds:
+    region: "{{ region }}"
+    command: create
+    instance_name: test-postgres
+    db_engine: postgres
+    size: 10
+    instance_type: db.m1.small
+    username: "{{ db_user }}"
+    password: "{{ db_pass }}"
+    wait: yes
+    wait_timeout: 600
+    publicly_accessible: no
+    tags:
+        Environment: testing
+        Application: cms
+
+  tags:
+    - db
+  register: rds
