@@ -20,7 +20,6 @@
   shell: eb init {{ ebs_app_name }} -r {{ region }} -p docker -k {{ ebs_private_key }}
 
 - name: Create EBS environments
-  shell: eb create {{ item.name }} -r {{ region }} -c {{ item.cname }} -t web -p docker --sample -k {{ ebs_private_key }} --tags app={{ ebs_app_name }} --service-role={{ ebs_service_role }}
+  shell: eb create {{ item }} -r {{ region }} -c {{ ebs_app_name }}-{{ item }} -t web -p docker --sample -k {{ ebs_private_key }} --tags app={{ ebs_app_name }} --service-role={{ ebs_service_role }}
   with_items:
-    - { name: 'prod', cname: "{{ ebs_app_name }}-prod" }
-    - { name: 'staging', cname: "{{ ebs_app_name }}-staging" }
+    - "{{ environments }}"

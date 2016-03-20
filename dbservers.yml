@@ -4,9 +4,6 @@
   connection: local
   gather_facts: False
 
-  vars:
-    region: us-east-1
-
   roles:
     - rds
 
